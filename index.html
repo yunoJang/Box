@@ -14,7 +14,11 @@
         window.addEventListener('click', e=>{
             if(e.target.classList.contains('box')) return;
 
-            unTarget();
+            clearTarget();
+        })
+
+        window.addEventListener('keydown',e=>{
+            if(e.key == 'Delete') target.delete();
         })
 
         window.addEventListener('keydown',e=>{
@@ -31,7 +35,7 @@
                 if (e.key == keyTypes[i]) target.move(i);
                 if (e.key == arrowTypes[i]) target.move(i);
             }
-            
+
         })
     </script>
 

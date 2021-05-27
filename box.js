@@ -1,10 +1,14 @@
 const BOX_SIZE = 100;
 
+let id = 0;
+
 let boxes = [];
 let target = null;
 
 class Box{
-    constructor(){
+    constructor(id){
+        this.id = id;
+
         this.dom = document.createElement('div');
         this.dom.className = 'box';
         this.dom.style.background = getRandomColor();
@@ -36,21 +40,28 @@ class Box{
     }
 
     target(){
-        unTarget(); 
+        clearTarget(); 
 
         target = this;
         target.dom.classList.add('target');
     }
+
+    delete(){
+        this.dom.remove();
+        
+        boxes = boxes.filter(box=> box.id!=this.id);
+        clearTarget();
+    }
 }
 
 function createBox() {
-    const box = new Box();
+    const box = new Box(id++);
     boxes.push(box);
 
     document.body.append(box.dom)
 }
 
-function unTarget() {
+function clearTarget() {
     if(target) target.dom.classList.remove('target');
     
     target = null;
