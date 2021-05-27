@@ -19,8 +19,8 @@ class Box{
     }
 
     target(){
-        if(target) target.dom.classList.remove('target');
-
+        unTarget();
+        
         target = this;
         target.dom.classList.add('target');
     }
@@ -50,6 +50,11 @@ function createBox() {
     boxes.push(box);
 
     document.body.append(box.dom)
+}
+
+function unTarget() {
+    if(target) target.dom.classList.remove('target');
+    target = null;
 }
 
 function getRandomColor() {
