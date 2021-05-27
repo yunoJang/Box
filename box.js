@@ -8,7 +8,7 @@ class Box{
         this.dom = document.createElement('div');
         this.dom.className = 'box';
         this.dom.style.background = getRandomColor();
-        this.dom.onclick = targetBox.bind(this);
+        this.dom.onclick = this.target.bind(this);
 
         this.x = 0;
         this.y = 0;
@@ -16,6 +16,13 @@ class Box{
 
     move(){
         this.dom.style.transform = `translate(${this.x}px,${this.y}px)`;
+    }
+
+    target(){
+        if(target) target.dom.classList.remove('target');
+
+        target = this;
+        target.dom.classList.add('target');
     }
 }
 
@@ -43,13 +50,6 @@ function createBox() {
     boxes.push(box);
 
     document.body.append(box.dom)
-}
-
-function targetBox() {
-    target?.dom.classList.remove('target');
-
-    target = this;
-    target.dom.classList.add('target');
 }
 
 function getRandomColor() {
