@@ -1,3 +1,3 @@
-Enter - createBox
-Click - target
-wasd,arrow - move
+* Enter - createBox
+* Click - target
+* wasd,arrow - move
