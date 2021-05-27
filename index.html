@@ -22,13 +22,16 @@
         })
 
         window.addEventListener('keydown',e=>{
+            if(!target) return;
+
             const keyTypes = ['w','a','s','d'];
             const arrowTypes = ['ArrowUp','ArrowLeft','ArrowDown','ArrowRight'];
 
             for(let i=0; i<4; i++) {
-                if (e.key == keyTypes[i]) moveBox(i);
-                if (e.key == arrowTypes[i]) moveBox(i)
+                if (e.key == keyTypes[i]) target.move(i);
+                if (e.key == arrowTypes[i]) target.move(i);
             }
+            
         })
     </script>
 

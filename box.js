@@ -14,35 +14,33 @@ class Box{
         this.y = 0;
     }
 
-    move(){
+    render(){
         this.dom.style.transform = `translate(${this.x}px,${this.y}px)`;
     }
 
-    target(){
-        unTarget();
+    move(direction){
+        const offset = 45;
+
+        const dy = [-1,0,1,0];
+        const dx = [0,-1,0,1];
+    
+        let ny = this.y + (dy[direction] * offset);
+        let nx = this.x + (dx[direction] * offset);
         
+        if (ny<0 || ny+BOX_SIZE>window.innerHeight || nx<0 || nx+BOX_SIZE>window.innerWidth) return;
+    
+        this.y = ny;
+        this.x = nx;
+    
+        this.render();
+    }
+
+    target(){
+        unTarget(); 
+
         target = this;
         target.dom.classList.add('target');
     }
-}
-
-function moveBox(direction) {
-    if (!target) return;
-
-    const offset = 45;
-
-    const dy = [-1,0,1,0];
-    const dx = [0,-1,0,1];
-
-    let ny = target.y + (dy[direction] * offset);
-    let nx = target.x + (dx[direction] * offset);
-
-    if (ny<0 || ny+BOX_SIZE>window.innerHeight || nx<0 || nx+BOX_SIZE>window.innerWidth) return;
-
-    target.y = ny;
-    target.x = nx;
-
-    target.move();
 }
 
 function createBox() {
@@ -54,6 +52,7 @@ function createBox() {
 
 function unTarget() {
     if(target) target.dom.classList.remove('target');
+    
     target = null;
 }
 
