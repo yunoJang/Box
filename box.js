@@ -3,6 +3,21 @@ const BOX_SIZE = 100;
 let boxes = [];
 let target = null;
 
+class Box{
+    constructor(){
+        this.dom = document.createElement('div');
+        this.dom.className = 'box';
+        this.dom.style.background = getRandomColor();
+        this.dom.onclick = targetBox.bind(this);
+
+        this.x = 0;
+        this.y = 0;
+    }
+
+    move(){
+        this.dom.style.transform = `translate(${this.x}px,${this.y}px)`;
+    }
+}
 
 function moveBox(direction) {
     if (!target) return;
@@ -37,22 +52,6 @@ function targetBox() {
     target.dom.classList.add('target');
 }
 
-class Box{
-    constructor(){
-        this.dom = document.createElement('div');
-        this.dom.className = 'box';
-        this.dom.style.background = getRandomColor();
-        this.dom.onclick = targetBox.bind(this);
-
-        this.x = 0;
-        this.y = 0;
-    }
-
-    move(){
-        this.dom.style.transform = `translate(${this.x}px,${this.y}px)`;
-    }
-}
-
 function getRandomColor() {
     function getHex256() {
         return  Math.floor(Math.random()*255+1).toString(16)
@@ -65,9 +64,6 @@ function getRandomColor() {
     let blue = getHex256();
     blue = blue.length<2 ? '0'+blue : blue;
 
-    const color = `#${red}${green}${blue}`
-    console.log(color)
-
-    return color
+    const color = `#${red}${green}${blue}`;
+    return color;
 }
-
