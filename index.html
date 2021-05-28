@@ -18,22 +18,28 @@
         })
 
         window.addEventListener('keydown',e=>{
-            if(e.key == 'Delete') target.delete();
+            if(e.key == 'Control') isCtrl = true;
         })
-
+        window.addEventListener('keyup',e=>{
+            if(e.key == 'Control') isCtrl = false;
+        })
+        
+        window.addEventListener('keydown',e=>{
+            if(e.key == 'Delete') targetBoxes.forEach(box=>box.delete());
+        })
         window.addEventListener('keydown',e=>{
             if(e.key == 'Enter') createBox();
         })
 
         window.addEventListener('keydown',e=>{
-            if(!target) return;
+            if(!targetBoxes.length) return;
 
             const keyTypes = ['w','a','s','d'];
             const arrowTypes = ['ArrowUp','ArrowLeft','ArrowDown','ArrowRight'];
 
             for(let i=0; i<4; i++) {
-                if (e.key == keyTypes[i]) target.move(i);
-                if (e.key == arrowTypes[i]) target.move(i);
+                if (e.key == keyTypes[i]) targetBoxes.forEach(box => box.move(i))
+                if (e.key == arrowTypes[i]) targetBoxes.forEach(box => box.move(i))
             }
 
         })
