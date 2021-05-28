@@ -3,7 +3,8 @@ const BOX_SIZE = 100;
 let id = 0;
 
 let boxes = [];
-let target = null;
+let targetBoxes = [];
+let isCtrl = false;
 
 class Box{
     constructor(id){
@@ -40,31 +41,30 @@ class Box{
     }
 
     target(){
-        clearTarget(); 
+        if(!isCtrl) clearTarget(); 
 
-        target = this;
-        target.dom.classList.add('target');
+        targetBoxes.push(this)
+        this.dom.classList.add('target');
     }
 
     delete(){
-        this.dom.remove();
-        
-        boxes = boxes.filter(box=> box.id!=this.id);
         clearTarget();
+
+        boxes = boxes.filter(box=> box.id!=this.id);
+        this.dom.remove();
     }
 }
 
 function createBox() {
     const box = new Box(id++);
-    boxes.push(box);
 
     document.body.append(box.dom)
 }
 
 function clearTarget() {
-    if(target) target.dom.classList.remove('target');
+    if(targetBoxes.length) targetBoxes.forEach(box => box.dom.classList.remove('target'))
     
-    target = null;
+    targetBoxes = [];
 }
 
 function getRandomColor() {
