@@ -4,8 +4,8 @@
 * Enter - createBox
 * Click - target
 * Ctrl + Click - multiple Target
-* wasd,arrow - move
-* d - delete
+* w,a,s,d & arrow - move
+* Del - delete
 
 ## Link
 [Demo](https://yunojang.github.io/Box/)
